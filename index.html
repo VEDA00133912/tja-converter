@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TJA-NoteFripper</title>
+
+  <meta name="description" content="TJAの音符大小を反転させるツール">
+  <meta name="keywords" content="太鼓の達人,tja,創作譜面,反転">
+  <meta name="author" content="りょう">
+  <meta name="theme-color" content="#f34728">
+
+  <link rel="icon" href="./assets/favicon.png" type="image/png"/>
+  <link rel="apple-touch-icon" href="./assets/favicon.png" />
+
+  <meta property="og:title" content="TJA-NoteFripper">
+  <meta property="og:description" content="TJAの音符大小を反転するツールです">
+  <meta property="og:image" content="https://veda00133912.github.io/TJA-NoteFlipper/images/og-image.png">
+  <meta property="og:url" content="https://veda00133912.github.io/TJA-NoteFlipper/">
+  <meta property="og:type" content="website">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="TJA-NoteFripper">
+  <meta name="twitter:description" content="TJAの音符大小を反転するツールです">
+  <meta name="twitter:image" content="https://veda00133912.github.io/TJA-NoteFlipper/images/og-image.png">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>TJA 音符大小反転ツール</h1>
+    <p>
+      TJAの音符大小を反転させます。<br>
+      1⇔3, 2⇔4, 5⇔6
+    </p>
+
+    <textarea id="input" placeholder="ここにTJAを貼り付け"></textarea>
+
+    <div class="buttons">
+      <button id="convertBtn" onclick="convert()" disabled>変換</button>
+      <button id="copyBtn" onclick="copyOutput()" disabled>コピー</button>
+    </div>
+
+    <textarea id="output" placeholder="変換結果" readonly></textarea>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
