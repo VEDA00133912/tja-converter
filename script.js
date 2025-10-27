@@ -54,7 +54,6 @@ function convertToKa() {
   convertWithMap(map);
 }
 
-// 等速変換
 function convertEqualSpeed(targetBPM, targetHS = 1) {
   const input = inputEl.value;
   const lines = input.split('\n');
@@ -72,6 +71,10 @@ function convertEqualSpeed(targetBPM, targetHS = 1) {
       if (!isNaN(bpm)) baseBPM = bpm;
       output.push(line);
       continue;
+    }
+
+    if (line.startsWith('#START')) {
+      scrollInserted = false;
     }
 
     output.push(line);
@@ -96,7 +99,6 @@ function convertEqualSpeed(targetBPM, targetHS = 1) {
   outputEl.value = output.join('\n');
   copyBtn.disabled = false;
 }
-
 
 function convertEqualSpeedPrompt() {
   const targetBPM = parseFloat(prompt('基準とするBPMを入力してください', 300));
