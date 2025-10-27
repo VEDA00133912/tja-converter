@@ -54,6 +54,7 @@ function convertToKa() {
   convertWithMap(map);
 }
 
+// 等速
 function convertEqualSpeed(targetBPM, targetHS = 1) {
   const input = inputEl.value;
   const lines = input.split('\n');
