@@ -63,14 +63,12 @@ function convertAlternateSize() {
   let output = [];
   let inNotes = false;
 
-  let donToggle = false;
-  let kaToggle = false;
+  let isBig = false;
 
   for (let line of lines) {
     if (line.trim() === '#START') {
       inNotes = true;
-      donToggle = false;
-      kaToggle = false;
+      isBig = false;
     }
 
     if (line.trim() === '#END') {
@@ -78,17 +76,18 @@ function convertAlternateSize() {
     }
 
     if (inNotes && !line.startsWith('#')) {
-
       let converted = line.replace(/[123456]/g, m => {
 
         if (m === '1' || m === '3') {
-          donToggle = !donToggle;
-          return donToggle ? '3' : '1';
+          const result = isBig ? '3' : '1';
+          isBig = !isBig;
+          return result;
         }
 
         if (m === '2' || m === '4') {
-          kaToggle = !kaToggle;
-          return kaToggle ? '4' : '2';
+          const result = isBig ? '4' : '2';
+          isBig = !isBig;
+          return result;
         }
 
         if (m === '5') return '6';
