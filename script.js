@@ -2,6 +2,7 @@ const convertBtn = document.getElementById('convertBtn');
 const convertDonBtn = document.getElementById('convertDonBtn');
 const convertKaBtn = document.getElementById('convertKaBtn');
 const convertEqualBtn = document.getElementById('convertEqualBtn');
+const convertAltBtn = document.getElementById('convertAltBtn');
 const copyBtn = document.getElementById('copyBtn');
 const inputEl = document.getElementById('input');
 const outputEl = document.getElementById('output');
@@ -12,6 +13,7 @@ inputEl.addEventListener('input', () => {
   convertDonBtn.disabled = !hasValue;
   convertKaBtn.disabled = !hasValue;
   convertEqualBtn.disabled = !hasValue;
+  convertAltBtn.disabled = !hasValue;
   copyBtn.disabled = true;
 });
 
@@ -54,7 +56,59 @@ function convertToKa() {
   convertWithMap(map);
 }
 
-// 等速
+// 大小交互
+function convertAlternateSize() {
+  const input = inputEl.value;
+  const lines = input.split('\n');
+  let output = [];
+  let inNotes = false;
+
+  let donToggle = false;
+  let kaToggle = false;
+
+  for (let line of lines) {
+    if (line.trim() === '#START') {
+      inNotes = true;
+      donToggle = false;
+      kaToggle = false;
+    }
+
+    if (line.trim() === '#END') {
+      inNotes = false;
+    }
+
+    if (inNotes && !line.startsWith('#')) {
+
+      let converted = line.replace(/[123456]/g, m => {
+
+        if (m === '1' || m === '3') {
+          donToggle = !donToggle;
+          return donToggle ? '3' : '1';
+        }
+
+        if (m === '2' || m === '4') {
+          kaToggle = !kaToggle;
+          return kaToggle ? '4' : '2';
+        }
+
+        if (m === '5') return '6';
+        if (m === '6') return '5';
+
+        return m;
+      });
+
+      output.push(converted);
+
+    } else {
+      output.push(line);
+    }
+  }
+
+  outputEl.value = output.join('\n');
+  copyBtn.disabled = false;
+}
+
+// 等速変換
 function convertEqualSpeed(targetBPM, targetHS = 1) {
   const input = inputEl.value;
   const lines = input.split('\n');
