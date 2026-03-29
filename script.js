@@ -1,9 +1,11 @@
-const convertBtn = document.getElementById('convertBtn');
+const convertBtn = document.getElementById('convertBtn'); 
 const convertDonBtn = document.getElementById('convertDonBtn');
 const convertKaBtn = document.getElementById('convertKaBtn');
 const convertEqualBtn = document.getElementById('convertEqualBtn');
 const convertAltBtn = document.getElementById('convertAltBtn');
+const convertDensityBtn = document.getElementById('convertDensityBtn');
 const copyBtn = document.getElementById('copyBtn');
+
 const inputEl = document.getElementById('input');
 const outputEl = document.getElementById('output');
 
@@ -14,6 +16,7 @@ inputEl.addEventListener('input', () => {
   convertKaBtn.disabled = !hasValue;
   convertEqualBtn.disabled = !hasValue;
   convertAltBtn.disabled = !hasValue;
+  convertDensityBtn.disabled = !hasValue;
   copyBtn.disabled = true;
 });
 
@@ -160,6 +163,40 @@ function convertEqualSpeedPrompt() {
   const targetHS = parseFloat(prompt('HSを入力してください', 1));
   if (isNaN(targetHS)) return;
   convertEqualSpeed(targetBPM, targetHS);
+}
+
+// 密度変更
+function convertDensity(density) {
+  const input = inputEl.value;
+  const lines = input.split('\n');
+  let output = [];
+  let inNotes = false;
+
+  for (let line of lines) {
+    if (line.trim() === '#START') inNotes = true;
+    if (line.trim() === '#END') inNotes = false;
+
+    if (inNotes && !line.startsWith('#')) {
+      let converted = line.replace(/[0-9]/g, m => m.repeat(density));
+      output.push(converted);
+    } else {
+      output.push(line);
+    }
+  }
+
+  outputEl.value = output.join('\n');
+  copyBtn.disabled = false;
+}
+
+function convertDensityPrompt() {
+  const density = parseInt(prompt('密度を何倍にしますか?', 2));
+
+  if (isNaN(density) || density < 1 || density > 10) {
+    alert('1〜10の自然数で入力してください');
+    return;
+  }
+
+  convertDensity(density);
 }
 
 function copyOutput() {

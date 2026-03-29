@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>TJA Converter</title>
-  <meta name="description" content="TJAを変換するツールです(大小反転、等速変換、全面、全縁)">
+  <meta name="description" content="TJAを変換するツールです(大小反転、等速変換、全面、全縁、密度変更)">
   <meta name="keywords" content="太鼓の達人,tja,創作譜面,ツール,等速,変換">
   <meta name="author" content="りょう">
   <meta name="theme-color" content="#f34728">
@@ -18,9 +18,6 @@
   <meta property="og:type" content="website">
 
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="tja-converter">
-  <meta name="twitter:description" content="TJAを変換するツールです(大小反転、等速変換、全面、全縁)">
-  <meta name="twitter:image" content="https://veda00133912.github.io/tja-converter/assets/og-image.png">
 
   <link rel="stylesheet" href="style.css">
 </head>
@@ -29,18 +26,18 @@
     <h1>TJA Converter</h1>
     <p>
       TJAを指定した形式で変換します<br>
-      大小反転、等速変換、全面、全縁
+      大小反転、等速変換、全面、全縁、密度変更
     </p>
 
     <textarea id="input" placeholder="ここにtjaを貼り付け"></textarea>
 
     <div class="buttons">
       <button id="convertBtn" onclick="convert()" disabled>大小反転</button>
-  
       <button id="convertDonBtn" onclick="convertToDon()" disabled>全部ドン</button>
       <button id="convertKaBtn" onclick="convertToKa()" disabled>全部カッ</button>
       <button id="convertEqualBtn" onclick="convertEqualSpeedPrompt()" disabled>等速変換</button>
       <button id="convertAltBtn" onclick="convertAlternateSize()" disabled>大小交互</button>
+      <button id="convertDensityBtn" onclick="convertDensityPrompt()" disabled>密度変更</button>
       <button id="copyBtn" onclick="copyOutput()" disabled>コピー</button>
     </div>
 
@@ -48,24 +45,9 @@
   </div>
 
   <footer>
-    <div class="footer-links">
-      <a href="https://twitter.com/ryo_001339" target="_blank" aria-label="Twitter">
-        <i class="fa-brands fa-twitter" style="color: #707070;"></i>
-      </a>
-      <a href="https://discord.gg/CytkCY2zpf" target="_blank" aria-label="Discord">
-        <i class="fa-brands fa-discord" style="color: #707070;"></i>
-      </a>
-      <a href="https://www.youtube.com/@00139-ryo" target="_blank" aria-label="YouTube">
-        <i class="fa-brands fa-youtube" style="color: #707070;"></i>
-      </a>
-      <a href="https://github.com/veda00133912/TJA-NoteFlipper" target="_blank" aria-label="GitHub">
-        <i class="fa-brands fa-github" style="color: #707070;"></i>
-      </a>
-    </div>
-    <p>&copy; 2025 りょう All rights reserved.</p>
+    <p>&copy; 2026 りょう All rights reserved.</p>
   </footer>
 
   <script src="script.js"></script>
-  <script src="https://kit.fontawesome.com/84cd51d246.js" crossorigin="anonymous"></script>
 </body>
 </html>
